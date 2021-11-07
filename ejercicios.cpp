@@ -107,6 +107,7 @@ pair < eph_h, eph_i > quitarIndividuos(eph_i & ti, eph_h & th, vector < pair < i
     if(true/*esValida*/ && true/*esBusquedaValida*/)
     {
         // TODO
+        cout << "ALGO";
     }
     pair < eph_h, eph_i > resp = make_pair(rth, rti);
     return resp;

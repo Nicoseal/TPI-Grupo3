@@ -1,4 +1,4 @@
-"E:\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" "C:\Users\Nicoseal\Desktop\Curricular\Exactas\Algo 1\Trabajos Practicos\TPI"
+"E:\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" C:\Users\Nicoseal\Desktop\TPI_Grupo3
 CMake Deprecation Warning at lib/googletest-master/CMakeLists.txt:1 (cmake_minimum_required):
   Compatibility with CMake < 2.8.12 will be removed from a future version of
   CMake.
@@ -23,7 +23,6 @@ CMake Deprecation Warning at lib/googletest-master/googletest/CMakeLists.txt:53 
   CMake that the project does not need compatibility with older versions.
 
 
--- Found PythonInterp: C:/Users/Nicoseal/AppData/Local/Programs/Python/Python38/python.exe (found version "3.8.10") 
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/Nicoseal/Desktop/Curricular/Exactas/Algo 1/Trabajos Practicos/TPI/cmake-build-debug
+-- Build files have been written to: C:/Users/Nicoseal/Desktop/TPI_Grupo3/cmake-build-debug
