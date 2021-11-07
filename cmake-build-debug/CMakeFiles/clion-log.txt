@@ -1,0 +1,20 @@
+"E:\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" "C:\Users\Nicoseal\Desktop\Curricular\Exactas\Algo 1\Trabajos Practicos\TPI"
+-- The C compiler identification is GNU 8.1.0
+-- The CXX compiler identification is GNU 8.1.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: E:/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: E:/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at CMakeLists.txt:7 (add_subdirectory):
+  add_subdirectory given source "lib/googletest-master" which is not an
+  existing directory.
+
+
+-- Configuring incomplete, errors occurred!
+See also "C:/Users/Nicoseal/Desktop/Curricular/Exactas/Algo 1/Trabajos Practicos/TPI/cmake-build-debug/CMakeFiles/CMakeOutput.log".
