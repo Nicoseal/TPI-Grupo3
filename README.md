@@ -14,3 +14,8 @@ Si consideran necesario agregar algo agregenlo sin problema.
     git add {archivo}
     git commit -m "message"
     git push origin main
+
+### Comandos de branches (por terminal):
+    git checkout -b {nombre} - Creas una branch local
+    git checkout {nombre} - Te cambias entre branches locales
+    git branch -D {nombre} - Borras una branch local
