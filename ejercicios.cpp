@@ -100,12 +100,14 @@ vector < int > histogramaDeAnillosConcentricos( eph_h th, eph_i ti, pair < int, 
 }
 
 // Implementacion Problema 10
-pair < eph_h, eph_i > quitarIndividuos(eph_i & ti, eph_h & th, vector < pair < int, dato > >  busqueda ){
+pair < eph_h, eph_i > quitarIndividuos(eph_i & ti, eph_h & th, vector < pair < int, dato > >  busqueda )
+{
     eph_h rth = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
     eph_i rti = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
+    if(true/*esValida*/ && true/*esBusquedaValida*/)
+    {
+        // TODO
+    }
     pair < eph_h, eph_i > resp = make_pair(rth, rti);
-		
-	// TODO
-	
-	return resp;
+    return resp;
 }

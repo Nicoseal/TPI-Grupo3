@@ -4,3 +4,7 @@
 #include "ejercicios.h"
 
 
+bool encuestaVacia(eph_i & ti, eph_h & th)
+{
+    return ti.empty() && th.empty();
+}
