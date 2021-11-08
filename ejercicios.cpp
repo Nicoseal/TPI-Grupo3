@@ -14,11 +14,16 @@ bool esEncuestaValida ( eph_h th, eph_i ti ) {
 
 // Implementacion Problema 2
 vector < int > histHabitacional ( eph_h th, eph_i ti, int region ) {
-	vector < int > resultado = {-1, -1, -1, -1, -1, -1};
-	
-	// TODO
-	
-	return resultado;
+    vector < int > resultado;
+
+    int longitudDeResultado = maximaCantidadDeHabitacionesEnRegion(th, region);
+
+    for (int i = 0; i < longitudDeResultado ; ++i) {
+
+        resultado.push_back(cantHogaresCasaConNHabitaciones(th,region,i+1));
+
+    }
+    return resultado;
 }
 
 // Implementacion Problema 3
@@ -84,19 +89,27 @@ vector < hogar > muestraHomogenea( eph_h & th, eph_i & ti ){
 
 // Implementacion Problema 9
 void corregirRegion( eph_h & th, eph_i ti ) {
-	
-	// TODO
-	
-	return;
+
+    for (int i = 0; i < th.size(); ++i) {
+
+        if (th[i][REGION] == 1)th[i][REGION] = 43;
+    }
+
+    return;
 }
 
 // Implementacion Problema 11
 vector < int > histogramaDeAnillosConcentricos( eph_h th, eph_i ti, pair < int, int > centro, vector < int > distancias ){
-	vector < int > resp = {};
-	
-	// TODO
-	
-	return resp;
+    vector < int > resp = {};
+
+    resp.push_back(cantHogaresEnAnillo(0,distancias[0],centro,th));
+
+    for (int i = 1; i < distancias.size() ; ++i) {
+
+        resp.push_back(cantHogaresEnAnillo(distancias[i-1],distancias[i],centro,th));
+    }
+
+    return resp;
 }
 
 // Implementacion Problema 10
