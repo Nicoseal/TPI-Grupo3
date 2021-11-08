@@ -30,8 +30,6 @@ TEST(quitarIndividuosTEST, SacaUnIndividuo) {
         {COMPONENTE, 1}
     };
 
-    eph_h th0 = th;
-    eph_i ti0 = ti;
 
     pair<eph_h, eph_i> res = quitarIndividuos(ti, th, busqueda);
 
@@ -44,10 +42,6 @@ TEST(quitarIndividuosTEST, SacaUnIndividuo) {
     EXPECT_EQ(h, res.first[0]);
     EXPECT_EQ(ind, res.second[0]);
 
-    EXPECT_EQ(th0, th);
-
-    ti.insert(ti.begin(), ind);
-    EXPECT_EQ(ti0, ti);
 }
 
 TEST(quitarIndividuosTEST, SacaTodosIndividuos) {
