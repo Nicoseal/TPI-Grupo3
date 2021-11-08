@@ -3,13 +3,24 @@
 #include "definiciones.h"
 
 using namespace std;
+
 // Implementacion Problema 1
-bool esEncuestaValida ( eph_h th, eph_i ti ) {
-	bool resp = false;
-	
-	// TODO
-	
-	return resp;
+bool esEncuestaValida ( eph_h th, eph_i ti )
+{
+    if(!algunaEncuestaVacia(ti, th) &&
+    esMatriz(th) && (esMatriz(ti)) &&
+    columnasCorrectas(ti, th) &&
+    individuosConHogares(ti, th) && hogaresConIndividuos(ti, th) &&
+    anioYTrimestreIgualEnTodos(th, ti) &&
+    miembrosDelHogarMenorA20(ti, th) &&
+    IV2MayorAII2(th) &&
+    atribsCatsOkDeTi(ti) && atribsCatsOkDeTh(th) &&
+    !hayRepetidosH(th) && !hayRepetidosI(ti))
+    {
+        return true;
+    }
+    else
+        return false;
 }
 
 // Implementacion Problema 2
@@ -50,12 +61,14 @@ bool creceElTeleworkingEnCiudadesGrandes ( eph_h t1h, eph_i t1i, eph_h t2h, eph_
 }
 
 // Implementacion Problema 5
-int costoSubsidioMejora( eph_h th, eph_i ti, int monto ){
-	int resp = -1;
-	
-	// TODO
-	
-  return  resp;
+int costoSubsidioMejora( eph_h th, eph_i ti, int monto )
+{
+    int resp = 0; // originalmente decia -1
+    for(hogar hog : th)
+        if(hog[II7] == 1)
+            if (necesitaSubsidioMejora(cantidadDeHabitantesEnCasa(hog[HOGCODUSU], ti), (hog)))
+                resp += monto;
+    return resp;
 }
 
 // Implementacion Problema 6
