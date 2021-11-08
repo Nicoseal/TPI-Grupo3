@@ -88,7 +88,8 @@ vector < hogar > muestraHomogenea( eph_h & th, eph_i & ti ){
 }
 
 // Implementacion Problema 9
-void corregirRegion( eph_h & th, eph_i ti ) {
+void corregirRegion( eph_h & th, eph_i ti )
+{
 
     for (int i = 0; i < th.size(); ++i) {
 
