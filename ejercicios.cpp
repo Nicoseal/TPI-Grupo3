@@ -99,21 +99,19 @@ void corregirRegion( eph_h & th, eph_i ti ) {
 }
 
 // Implementacion Problema 11
-vector < int > histogramaDeAnillosConcentricos( eph_h th, eph_i ti, pair < int, int > centro, vector < int > distancias ){
-    vector < int > resp = {};
-
+vector < int > histogramaDeAnillosConcentricos(eph_h th, eph_i ti, pair<int, int> centro, vector<int> distancias)
+{
+    vector<int> resp = {};
     resp.push_back(cantHogaresEnAnillo(0,distancias[0],centro,th));
-
-    for (int i = 1; i < distancias.size() ; ++i) {
-
+    for (int i = 1; i < distancias.size() ; ++i)
+    {
         resp.push_back(cantHogaresEnAnillo(distancias[i-1],distancias[i],centro,th));
     }
-
     return resp;
 }
 
 // Implementacion Problema 10
-pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>>  busqueda)
+pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>>&  busqueda)
 {
     eph_h rth = {};
     eph_i rti = {};
