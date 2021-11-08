@@ -27,6 +27,13 @@ bool esEncuestaValida ( eph_h th, eph_i ti )
 vector < int > histHabitacional ( eph_h th, eph_i ti, int region ) {
     vector < int > resultado;
 
+    int longitudDeResultado = maximaCantidadDeHabitacionesEnRegion(th, region);
+
+    for (int i = 0; i < longitudDeResultado ; ++i) {
+
+        resultado.push_back(cantHogaresCasaConNHabitaciones(th,region,i+1));
+
+    }
     return resultado;
 }
 
@@ -94,7 +101,8 @@ vector < hogar > muestraHomogenea( eph_h & th, eph_i & ti ){
 }
 
 // Implementacion Problema 9
-void corregirRegion( eph_h & th, eph_i ti ) {
+void corregirRegion( eph_h & th, eph_i ti )
+{
 
     for (int i = 0; i < th.size(); ++i) {
 
@@ -108,7 +116,11 @@ void corregirRegion( eph_h & th, eph_i ti ) {
 vector < int > histogramaDeAnillosConcentricos(eph_h th, eph_i ti, pair<int, int> centro, vector<int> distancias)
 {
     vector<int> resp = {};
-
+    resp.push_back(cantHogaresEnAnillo(0,distancias[0],centro,th));
+    for (int i = 1; i < distancias.size() ; ++i)
+    {
+        resp.push_back(cantHogaresEnAnillo(distancias[i-1],distancias[i],centro,th));
+    }
     return resp;
 }
 
@@ -117,7 +129,20 @@ pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>
 {
     eph_h rth = {};
     eph_i rti = {};
-
+    for(int i=0;i<ti.size();i++)
+        if(cumpleCondicion(busqueda, ti[i]))
+        {
+            for(int x=0;x<th.size();x++)
+                if(th[x][HOGCODUSU] == ti[i][INDCODUSU])
+                {
+                    rth.push_back(th[x]);
+                    th.erase(th.begin() + x);
+                    x--;
+                }
+            rti.push_back(ti[i]);
+            ti.erase(ti.begin() + i);
+            i--;
+        }
     pair<eph_h, eph_i> resp = make_pair(rth, rti);
     return resp;
 }
