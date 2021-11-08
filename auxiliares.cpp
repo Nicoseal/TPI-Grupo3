@@ -70,3 +70,11 @@ int cantHogaresEnAnillo(int distDesde, int distHasta, pair <int, int> centro, ep
     }
     return contador;
 }
+
+bool cumpleCondicion(vector<pair<int, dato>>  busqueda, individuo i)
+{
+    bool ans = true;
+    for(pair<int, dato> condicion : busqueda)
+        ans = ans && (i[condicion.first] == condicion.second);
+    return ans;
+}

@@ -113,17 +113,24 @@ vector < int > histogramaDeAnillosConcentricos( eph_h th, eph_i ti, pair < int, 
 }
 
 // Implementacion Problema 10
-pair < eph_h, eph_i > quitarIndividuos(eph_i & ti, eph_h & th, vector < pair < int, dato > >  busqueda )
+pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>>  busqueda)
 {
-    eph_h rth = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
-    eph_i rti = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
-    if(true/*esValida*/ && true/*esBusquedaValida*/)
-    {
-        string x;
-        cin >> x;
-        // TODO
-        cout << x;
-    }
-    pair < eph_h, eph_i > resp = make_pair(rth, rti);
+    eph_h rth = {};
+    eph_i rti = {};
+    for(int i=0;i<ti.size();i++)
+        if(cumpleCondicion(busqueda, ti[i]))
+        {
+            for(int x=0;x<th.size();x++)
+                if(th[x][HOGCODUSU] == ti[i][INDCODUSU])
+                {
+                    rth.push_back(th[x]);
+                    th.erase(th.begin() + x);
+                    x--;
+                }
+            rti.push_back(ti[i]);
+            ti.erase(ti.begin() + i);
+            i--;
+        }
+    pair<eph_h, eph_i> resp = make_pair(rth, rti);
     return resp;
 }

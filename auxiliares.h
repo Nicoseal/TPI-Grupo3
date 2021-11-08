@@ -10,5 +10,6 @@ int maximaCantidadDeHabitacionesEnRegion (eph_h th, int region);
 int distanciaEuclidiana (pair <int , int > centro , int latitud, int longitud);
 bool hogarEnAnillo(int distDesde, int distHasta, pair <int, int> centro, hogar h);
 int cantHogaresEnAnillo(int distDesde, int distHasta, pair <int, int> centro, eph_h th);
+bool cumpleCondicion(vector<pair<int, dato>>  busqueda, individuo i);
 
 #endif //SOLUCION_AUXILIARES_H
