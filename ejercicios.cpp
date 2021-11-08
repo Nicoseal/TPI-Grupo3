@@ -5,11 +5,13 @@
 using namespace std;
 // Implementacion Problema 1
 bool esEncuestaValida ( eph_h th, eph_i ti ) {
-	bool resp = false;
-	
-	// TODO
-	
-	return resp;
+    if(esMatriz(th) && (esMatriz(ti)) && columnasCorrectas(ti, th) && !algunaEncuestaVacia(ti, th) && columnasIgualEnum(ti, th)
+       && individuosConHogares(ti, th) && hogaresConIndividuos(ti, th) && anioYTrimestreIgualEnTodos(ti, th) && miembrosDelHogarMenorA20(ti, th)
+       && IV2MayorAII2(ti) && atribsCatsOkDeTi(ti) && atribsCatsOkDeTh(th)){
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // Implementacion Problema 2
@@ -51,11 +53,16 @@ bool creceElTeleworkingEnCiudadesGrandes ( eph_h t1h, eph_i t1i, eph_h t2h, eph_
 
 // Implementacion Problema 5
 int costoSubsidioMejora( eph_h th, eph_i ti, int monto ){
-	int resp = -1;
-	
-	// TODO
-	
-  return  resp;
+    int resp = 0;    // originalmente decia -1
+
+    for (int i = 0; i < th.size(); i++){
+        if(th[i][II7] == 1){
+            if (necesitaSubsidioMejora(cantidadDeHabitantesEnCasa(th[i][0], ti), (th[i]))){
+                resp = resp + monto;
+            }}
+    }
+
+    return  resp;
 }
 
 // Implementacion Problema 6
