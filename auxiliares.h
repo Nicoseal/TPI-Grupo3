@@ -35,6 +35,11 @@ int cantidadDeHabitantesEnCasa(dato hogcod, eph_i &ti);
 bool necesitaSubsidioMejora (int genteViviendo, hogar &hog);
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 5
 
+/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 3
+float cantHogaresValidos(eph_h &th, int region);
+float cantHogaresValidosConHC(eph_h &th, eph_i &ti, int region);
+/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 3
+
 #endif //SOLUCION_AUXILIARES_H
 
 
