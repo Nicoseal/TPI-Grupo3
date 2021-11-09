@@ -68,16 +68,6 @@ int cantHogaresEnAnillo(int distDesde, int distHasta, pair <int, int> centro, ep
     return contador;
 }
 
-/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
-bool cumpleCondicion(vector<pair<int, dato>>  busqueda, individuo i)
-{
-    bool ans = true;
-    for(pair<int, dato> condicion : busqueda)
-        ans = ans && (i[condicion.first] == condicion.second);
-    return ans;
-}
-/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 10
-
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 1
 bool esMatriz(vector<vector<int>> &th)
 {
@@ -181,18 +171,18 @@ bool IV2MayorAII2 (eph_i &th)
 
 bool atribsCatsOkDeTi(eph_i ti)
 {
-    for(int i = 0; i < ti.size(); i++)
+    for(individuo &ind : ti)
     {
-        if((ti[i][INDCODUSU] > 0) &&
-           (ti[i][COMPONENTE] > 0) &&
-           (ti[i][INDTRIMESTRE] > 0 && ti[i][INDTRIMESTRE] < 4) &&
-           (ti[i][CH4] == 1 || ti[i][CH4] == 2) &&
-           (ti[i][CH6] > 0) &&
-           (ti[i][NIVEL_ED] == 0 || ti[i][NIVEL_ED] == 1) &&
-           (ti[i][ESTADO] == 0 || ti[i][ESTADO] == 1 || ti[i][ESTADO] == -1) &&
-           (ti[i][CAT_OCUP] >= 0 && ti[i][CAT_OCUP] <= 4) &&
-           (ti[i][p47T] >= -1) &&
-           (ti[i][PP04G] >= 0 && ti[i][PP04G] <= 10))
+        if((ind[INDCODUSU] > 0) &&
+           (ind[COMPONENTE] > 0) &&
+           (ind[INDTRIMESTRE] > 0 && ind[INDTRIMESTRE] < 4) &&
+           (ind[CH4] == 1 || ind[CH4] == 2) &&
+           (ind[CH6] > 0) &&
+           (ind[NIVEL_ED] == 0 || ind[NIVEL_ED] == 1) &&
+           (ind[ESTADO] == 0 || ind[ESTADO] == 1 || ind[ESTADO] == -1) &&
+           (ind[CAT_OCUP] >= 0 && ind[CAT_OCUP] <= 4) &&
+           (ind[p47T] >= -1) &&
+           (ind[PP04G] >= 0 && ind[PP04G] <= 10))
         {
             return true;
         }
@@ -203,17 +193,17 @@ bool atribsCatsOkDeTi(eph_i ti)
 
 bool atribsCatsOkDeTh(eph_h th)
 {
-    for(int i = 0; i < th.size(); i++)
+    for(hogar &hog : th)
     {
-        if((th[i][HOGCODUSU] > 0) &&
-           (th[i][HOGTRIMESTRE] > 0 && th[i][HOGTRIMESTRE] <= 4) &&
-           (0 < th[i][II7] && th[i][II7] <= 3) &&
-           (th[i][REGION] == 1 || (40 <= th[i][REGION] && th[i][REGION] <= 44)) &&
-           (th[i][MAS_500] == 1 || th[i][MAS_500] == 0) &&
-           (th[i][IV2] > 0) &&
-           (0 < th[i][IV1] && th[i][IV1] <= 5) &&
-           (th[i][II2] > 0) &&
-           (th[i][II3] == 1 || th[i][II3] == 2))
+        if((hog[HOGCODUSU] > 0) &&
+           (hog[HOGTRIMESTRE] > 0 && hog[HOGTRIMESTRE] <= 4) &&
+           (0 < hog[II7] && hog[II7] <= 3) &&
+           (hog[REGION] == 1 || (40 <= hog[REGION] && hog[REGION] <= 44)) &&
+           (hog[MAS_500] == 1 || hog[MAS_500] == 0) &&
+           (hog[IV2] > 0) &&
+           (0 < hog[IV1] && hog[IV1] <= 5) &&
+           (hog[II2] > 0) &&
+           (hog[II3] == 1 || hog[II3] == 2))
         {
             return true;
         }
@@ -240,25 +230,6 @@ bool hayRepetidosI(vector<vector<dato>> &ti)
     return false;
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 1
-
-/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 5
-int cantidadDeHabitantesEnCasa(dato hogcod, eph_i &ti)
-{
-    int genteViviendoEnEsteHogcod1 = 0;
-    for(individuo ind : ti)
-        if (ind[INDCODUSU] == hogcod)
-            genteViviendoEnEsteHogcod1++;
-    return genteViviendoEnEsteHogcod1;
-}
-
-bool necesitaSubsidioMejora (int genteViviendo, hogar &hog)
-{
-    if ((hog[IV2]) < (genteViviendo - 2))
-        return true;
-    else
-        return false;
-}
-/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 5
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 3
 float cantHogaresValidos(eph_h &th, int region)
@@ -288,3 +259,32 @@ float cantHogaresValidosConHC(eph_h &th, eph_i &ti, int region)
     return ans;
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 3
+
+/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 5
+int cantidadDeHabitantesEnCasa(dato hogcod, eph_i &ti)
+{
+    int genteViviendoEnEsteHogcod1 = 0;
+    for(individuo ind : ti)
+        if (ind[INDCODUSU] == hogcod)
+            genteViviendoEnEsteHogcod1++;
+    return genteViviendoEnEsteHogcod1;
+}
+
+bool necesitaSubsidioMejora (int genteViviendo, hogar &hog)
+{
+    if ((hog[IV2]) < (genteViviendo - 2))
+        return true;
+    else
+        return false;
+}
+/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 5
+
+/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
+bool cumpleCondicion(vector<pair<int, dato>>  busqueda, individuo i)
+{
+    bool ans = true;
+    for(pair<int, dato> condicion : busqueda)
+        ans = ans && (i[condicion.first] == condicion.second);
+    return ans;
+}
+/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 10
