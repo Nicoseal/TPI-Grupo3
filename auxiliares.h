@@ -34,7 +34,6 @@ bool hayRepetidosI(vector<vector<dato>> &ti);
 int cantidadDeHabitantesEnCasa(dato hogcod, eph_i &ti);
 bool necesitaSubsidioMejora (int genteViviendo, hogar &hog);
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 5
-
 #endif //SOLUCION_AUXILIARES_H
 
 
