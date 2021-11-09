@@ -259,3 +259,32 @@ bool necesitaSubsidioMejora (int genteViviendo, hogar &hog)
         return false;
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 5
+
+/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 3
+float cantHogaresValidos(eph_h &th, int region)
+{
+    float ans = 0;
+    for(hogar hog : th)
+        if(hog[REGION] == region && hog[MAS_500] == 0)
+            ans++;
+    return ans;
+}
+
+int cantHabitantes(hogar h, eph_i &ti)
+{
+    int ans = 0;
+    for(individuo habitante : ti)
+        if(habitante[INDCODUSU] == h[HOGCODUSU])
+            ans++;
+    return ans;
+}
+
+float cantHogaresValidosConHC(eph_h &th, eph_i &ti, int region)
+{
+    float ans = 0;
+    for(hogar hog : th)
+        if(hog[REGION] == region && hog[MAS_500] == 0 && (cantHabitantes(hog, ti) > 3 * hog[II2]))
+            ans++;
+    return ans;
+}
+/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 3
