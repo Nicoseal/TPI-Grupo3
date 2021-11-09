@@ -255,6 +255,14 @@ bool cumpleCondicion(vector<pair<int, dato>>  busqueda, individuo i)
         ans = ans && (i[condicion.first] == condicion.second);
     return ans;
 }
+
+bool quedanIndividuos(eph_i &ti, dato codigo)
+{
+    for(individuo ind : ti)
+        if(ind[INDCODUSU] == codigo)
+            return true;
+    return false;
+}
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 10
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 11

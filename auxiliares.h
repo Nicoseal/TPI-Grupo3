@@ -40,6 +40,7 @@ bool necesitaSubsidioMejora (int genteViviendo, hogar &hog);
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
 bool cumpleCondicion(vector<pair<int, dato>>  busqueda, individuo i);
+bool quedanIndividuos(eph_i &ti, dato codigo);
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 11
