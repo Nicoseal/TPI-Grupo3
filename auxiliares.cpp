@@ -2,6 +2,7 @@
 #include "auxiliares.h"
 #include "gtest/gtest.h"
 #include "ejercicios.h"
+#include <math.h>
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 1
 bool esMatriz(vector<vector<int>> &th)
@@ -180,7 +181,7 @@ int maximaCantidadDeHabitacionesEnRegion (eph_h th, int region){
 
     for (int i = 0; i < th.size(); ++i)
     {
-        if(esCasa(th[i]) && th[i][REGION] == region && th[i][IV2] > max)
+        if(th[i][REGION] == region && th[i][IV2] > max)
         {
             max = th[i][IV2];
         }
@@ -246,7 +247,96 @@ bool necesitaSubsidioMejora (int genteViviendo, hogar &hog)
         return false;
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 5
+/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 7
+/*
+void seleccionarMinimo(eph_h &th, int i){
+    int posMinimo= i;
+    for(int j=i; j<th.size(); j++){
+        if(th[posMinimo][HOGCODUSU] > th[j][HOGCODUSU]){
+            posMinimo = j;
+        }
+    }
+    swap(th[i],th[posMinimo]);
+}
 
+eph_h selectionSort(eph_h &th){
+    for(int i=0; i<th.size(); i++){
+        seleccionarMinimo(th,i); }
+    return th;
+    }
+
+*/
+
+
+void burbujeo(eph_h &th, int i){
+    for(int j=th.size()-1; j>i; j--){
+        if(th[j][REGION] < th[j-1][REGION]){
+            swap(th[j] ,th[j-1] );
+
+        }
+        if (th[j][REGION] == th[j-1][REGION] && th[j][HOGCODUSU] < th[j-1][HOGCODUSU]){
+            swap(th[j] ,th[j-1] );
+        }
+    }
+}
+
+eph_h ordenarPorRegionYCodosu(eph_h &th){
+    for(int i=0; i<th.size(); i++){
+        burbujeo(th ,i);
+    }
+    return th;
+}
+
+eph_i ordenarPorIndividuosPorHOGCODOSU(eph_h th, eph_i ti){
+    eph_i res = {};
+    for (int i = 0; i < th.size() ; ++i) {
+        for (int j = 0; j <ti.size() ; ++j) {
+            if (ti[j][INDCODUSU] == th[i][HOGCODUSU]){
+                res.push_back(ti[j]);
+            }
+        }
+    }
+    return res;
+}
+
+
+void seleccionarMinimo(eph_i &ti, int i){
+    int posMinimo= i;
+    for(int j=i; j<ti.size(); j++){
+        if((ti[posMinimo][INDCODUSU] == ti[j][INDCODUSU]) && (ti[posMinimo][COMPONENTE] > ti[j][COMPONENTE])){
+            posMinimo = j;
+        }
+    }
+    swap(ti[i],ti[posMinimo]);
+}
+
+eph_h ordenarPorCOMPONENTE(eph_i &ti){
+    for(int i=0; i<ti.size(); i++){
+        seleccionarMinimo(ti,i); }
+    return ti;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 7
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
 bool cumpleCondicion(vector<pair<int, dato>>  busqueda, individuo i)
 {
