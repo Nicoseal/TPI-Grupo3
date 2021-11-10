@@ -248,24 +248,6 @@ bool necesitaSubsidioMejora (int genteViviendo, hogar &hog)
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 5
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 7
-/*
-void seleccionarMinimo(eph_h &th, int i){
-    int posMinimo= i;
-    for(int j=i; j<th.size(); j++){
-        if(th[posMinimo][HOGCODUSU] > th[j][HOGCODUSU]){
-            posMinimo = j;
-        }
-    }
-    swap(th[i],th[posMinimo]);
-}
-
-eph_h selectionSort(eph_h &th){
-    for(int i=0; i<th.size(); i++){
-        seleccionarMinimo(th,i); }
-    return th;
-    }
-
-*/
 
 
 void burbujeo(eph_h &th, int i){
@@ -315,24 +297,6 @@ eph_h ordenarPorCOMPONENTE(eph_i &ti){
         seleccionarMinimo(ti,i); }
     return ti;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

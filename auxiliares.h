@@ -38,12 +38,13 @@ int cantidadDeHabitantesEnCasa(dato hogcod, eph_i &ti);
 bool necesitaSubsidioMejora (int genteViviendo, hogar &hog);
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 5
 
+/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 7
 eph_h ordenarPorCOMPONENTE(eph_h &th);
 void seleccionarMinimo(eph_h &th, int i);
 void burbujeo(eph_h &th, int i);
 eph_h ordenarPorRegionYCodosu(eph_h &th);
 eph_i ordenarPorIndividuosPorHOGCODOSU(eph_h th, eph_i ti);
-
+/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 7
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
 bool cumpleCondicion(vector<pair<int, dato>>  busqueda, individuo i);
