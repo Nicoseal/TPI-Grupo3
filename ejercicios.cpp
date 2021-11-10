@@ -13,7 +13,7 @@ bool esEncuestaValida ( eph_h th, eph_i ti )
     columnasCorrectas(ti, th) &&
     individuosConHogares(ti, th) && hogaresConIndividuos(ti, th) &&
     anioYTrimestreIgualEnTodos(th, ti) &&
-    miembrosDelHogarMenorA20(ti, th) &&
+    miembrosDelHogarMenorA20(th, ti) &&
     IV2MayorAII2(th) &&
     atribsCatsOkDeTi(ti) && atribsCatsOkDeTh(th) &&
     !hayRepetidosH(th) && !hayRepetidosI(ti))

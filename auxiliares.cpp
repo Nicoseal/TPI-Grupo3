@@ -78,7 +78,7 @@ bool genteViviendoMayorA20(dato hogcod, eph_i &ti)
 {
     int genteViviendoEnEsteHogcod = 0;
     for (individuo ind : ti)
-        if (ind[0] == hogcod)
+        if (ind[INDCODUSU] == hogcod)
             genteViviendoEnEsteHogcod++;
     return genteViviendoEnEsteHogcod > 20;
 }
@@ -86,7 +86,7 @@ bool genteViviendoMayorA20(dato hogcod, eph_i &ti)
 bool miembrosDelHogarMenorA20(eph_h &th, eph_i &ti)
 {
     for (hogar hog : th)
-        if(genteViviendoMayorA20(hog[0], ti))
+        if(genteViviendoMayorA20(hog[HOGCODUSU], ti))
             return false;
     return true;
 }
