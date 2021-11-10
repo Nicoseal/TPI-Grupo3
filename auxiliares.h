@@ -33,6 +33,15 @@ int cantHabitantes(hogar h, eph_i &ti);
 float cantHogaresValidosConHC(eph_h &th, eph_i &ti, int region);
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 3
 
+/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 4
+bool suHogarTieneEspaciosReservadosParaElTrabajo (individuo i, eph_h &th);
+bool individuoEnHogarValido(individuo &i, eph_h &th);
+bool trabajaEnSuVivienda(individuo i, eph_h th);
+float cantIndividuosQueTrabajan(eph_h &th, eph_i &ti);
+float cantIndividuosTrabajandoEnSuVivienda(eph_h &th, eph_i &ti);
+float proporcionTeleworking(eph_h &th, eph_i &ti);
+/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 4
+
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 5
 int cantidadDeHabitantesEnCasa(dato hogcod, eph_i &ti);
 bool necesitaSubsidioMejora (int genteViviendo, hogar &hog);
@@ -47,14 +56,14 @@ eph_i ordenarPorIndividuosPorHOGCODOSU(eph_h th, eph_i ti);
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 7
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
-bool cumpleCondicion(vector<pair<int, dato>>  busqueda, individuo i);
+bool cumpleCondicion(vector<pair<int, dato>>  &busqueda, individuo i);
 bool quedanIndividuos(eph_i &ti, dato codigo);
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 11
 int distanciaEuclidiana (pair <int , int > centro , int latitud, int longitud);
 bool hogarEnAnillo(int distDesde, int distHasta, pair <int, int> centro, hogar h);
-int cantHogaresEnAnillo(int distDesde, int distHasta, pair <int, int> centro, eph_h th);
+int cantHogaresEnAnillo(int distDesde, int distHasta, pair <int, int> centro, eph_h &th);
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 11
 
 #endif //SOLUCION_AUXILIARES_H

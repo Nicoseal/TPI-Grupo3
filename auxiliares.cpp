@@ -26,10 +26,7 @@ bool columnasCorrectas(eph_i &ti, eph_h &th)
 
 bool algunaEncuestaVacia (const eph_i &ti, const eph_h &th)
 {
-    if (ti.empty()  || th.empty())
-        return true;
-    else
-        return false;
+    return (ti.empty()  || th.empty());
 }
 
 bool tieneHogar(individuo i, eph_h &th)
@@ -83,10 +80,7 @@ bool genteViviendoMayorA20(dato hogcod, eph_i &ti)
     for (individuo ind : ti)
         if (ind[0] == hogcod)
             genteViviendoEnEsteHogcod++;
-    if(genteViviendoEnEsteHogcod > 20)
-        return true;
-    else
-        return false;
+    return genteViviendoEnEsteHogcod > 20;
 }
 
 bool miembrosDelHogarMenorA20(eph_h &th, eph_i &ti)
@@ -108,7 +102,6 @@ bool IV2MayorAII2 (eph_i &th)
 bool atribsCatsOkDeTi(eph_i ti)
 {
     for(individuo &ind : ti)
-    {
         if((ind[INDCODUSU] > 0) &&
            (ind[COMPONENTE] > 0) &&
            (ind[INDTRIMESTRE] > 0 && ind[INDTRIMESTRE] < 4) &&
@@ -122,15 +115,12 @@ bool atribsCatsOkDeTi(eph_i ti)
         {
             return true;
         }
-    }
     return false;
-
 }
 
 bool atribsCatsOkDeTh(eph_h th)
 {
     for(hogar &hog : th)
-    {
         if((hog[HOGCODUSU] > 0) &&
            (hog[HOGTRIMESTRE] > 0 && hog[HOGTRIMESTRE] <= 4) &&
            (0 < hog[II7] && hog[II7] <= 3) &&
@@ -143,7 +133,6 @@ bool atribsCatsOkDeTh(eph_h th)
         {
             return true;
         }
-    }
     return false;
 }
 
@@ -168,34 +157,29 @@ bool hayRepetidosI(vector<vector<dato>> &ti)
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 1
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 2
-bool esCasa(hogar h){
+bool esCasa(hogar h)
+{
     bool res = false;
-    if(h[IV1] == 1){
+    if(h[IV1] == 1)
         res = true;
-    }
     return res;
 }
 
-int maximaCantidadDeHabitacionesEnRegion (eph_h th, int region){
+int maximaCantidadDeHabitacionesEnRegion (eph_h th, int region)
+{
     int max = 0;
-
-    for (int i = 0; i < th.size(); ++i)
-    {
-        if(th[i][REGION] == region && th[i][IV2] > max)
-        {
-            max = th[i][IV2];
-        }
-    }
+    for(hogar &hog : th)
+        if(hog[REGION] == region && hog[IV2] > max)
+            max = hog[IV2];
     return max;
 }
 
-int cantHogaresCasaConNHabitaciones(eph_h th, int region, int habitaciones){
+int cantHogaresCasaConNHabitaciones(eph_h th, int region, int habitaciones)
+{
     int contador = 0;
-    for (int j = 0; j < th.size(); ++j) {
-        if(esCasa(th[j]) && th[j][IV2] == habitaciones && th[j][REGION] == region){
+    for(hogar &hog : th)
+        if(esCasa(hog) && hog[IV2] == habitaciones && hog[REGION] == region)
             contador ++;
-        }
-    }
     return contador;
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 2
@@ -229,6 +213,56 @@ float cantHogaresValidosConHC(eph_h &th, eph_i &ti, int region)
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 3
 
+/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 4
+bool suHogarTieneEspaciosReservadosParaElTrabajo (individuo i, eph_h &th)
+{
+    for(hogar &hog : th)
+        if ((hog[HOGCODUSU] == i[INDCODUSU]) && (hog[II3] == 1))
+            return true;
+    return false;
+}
+
+bool individuoEnHogarValido(individuo &i, eph_h &th)
+{
+    for(hogar &hog : th)
+        if ((hog[HOGCODUSU] == i[INDCODUSU]) && hog[MAS_500] == 1 && (hog[IV1] == 1 || hog[IV1] == 2))
+            return true;
+    return false;
+}
+
+bool trabajaEnSuVivienda(individuo i, eph_h th)
+{
+    return ((i[PP04G] == 6) && suHogarTieneEspaciosReservadosParaElTrabajo(i, th));
+}
+
+float cantIndividuosQueTrabajan(eph_h &th, eph_i &ti)
+{
+    float cant = 0;
+    for(individuo &ind : ti)
+        if((ind[ESTADO] == 1) && individuoEnHogarValido(ind, th))
+            cant++;
+    return cant;
+}
+
+float cantIndividuosTrabajandoEnSuVivienda(eph_h &th, eph_i &ti)
+{
+    float x = 0;
+    for(individuo &ind : ti)
+        if((ind[ESTADO] == 1) && individuoEnHogarValido(ind, th) && trabajaEnSuVivienda(ind, th))
+            x++;
+    return x;
+}
+
+float proporcionTeleworking(eph_h &th, eph_i &ti)
+{
+    float cant_trab = cantIndividuosQueTrabajan(th, ti);
+    if(cant_trab > 0)
+        return cantIndividuosTrabajandoEnSuVivienda(th, ti) / cant_trab;
+    else
+        return 0;
+}
+/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 4
+
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 5
 int cantidadDeHabitantesEnCasa(dato hogcod, eph_i &ti)
 {
@@ -247,62 +281,55 @@ bool necesitaSubsidioMejora (int genteViviendo, hogar &hog)
         return false;
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 5
+
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 7
-
-
-void burbujeo(eph_h &th, int i){
-    for(int j=th.size()-1; j>i; j--){
-        if(th[j][REGION] < th[j-1][REGION]){
+void burbujeo(eph_h &th, int i)
+{
+    for(int j=th.size()-1; j>i; j--)
+    {
+        if(th[j][REGION] < th[j-1][REGION])
             swap(th[j] ,th[j-1] );
-
-        }
-        if (th[j][REGION] == th[j-1][REGION] && th[j][HOGCODUSU] < th[j-1][HOGCODUSU]){
+        if (th[j][REGION] == th[j-1][REGION] && th[j][HOGCODUSU] < th[j-1][HOGCODUSU])
             swap(th[j] ,th[j-1] );
-        }
     }
 }
 
-eph_h ordenarPorRegionYCodosu(eph_h &th){
-    for(int i=0; i<th.size(); i++){
+eph_h ordenarPorRegionYCodosu(eph_h &th)
+{
+    for(int i=0; i<th.size(); i++)
         burbujeo(th ,i);
-    }
     return th;
 }
 
-eph_i ordenarPorIndividuosPorHOGCODOSU(eph_h th, eph_i ti){
+eph_i ordenarPorIndividuosPorHOGCODOSU(eph_h th, eph_i ti)
+{
     eph_i res = {};
-    for (int i = 0; i < th.size() ; ++i) {
-        for (int j = 0; j <ti.size() ; ++j) {
-            if (ti[j][INDCODUSU] == th[i][HOGCODUSU]){
-                res.push_back(ti[j]);
-            }
-        }
-    }
+    for(hogar &hog : th)
+        for(individuo &ind : ti)
+            if (ind[INDCODUSU] == hog[HOGCODUSU])
+                res.push_back(ind);
     return res;
 }
 
-
-void seleccionarMinimo(eph_i &ti, int i){
+void seleccionarMinimo(eph_i &ti, int i)
+{
     int posMinimo= i;
-    for(int j=i; j<ti.size(); j++){
-        if((ti[posMinimo][INDCODUSU] == ti[j][INDCODUSU]) && (ti[posMinimo][COMPONENTE] > ti[j][COMPONENTE])){
+    for(int j=i; j<ti.size(); j++)
+        if((ti[posMinimo][INDCODUSU] == ti[j][INDCODUSU]) && (ti[posMinimo][COMPONENTE] > ti[j][COMPONENTE]))
             posMinimo = j;
-        }
-    }
     swap(ti[i],ti[posMinimo]);
 }
 
-eph_h ordenarPorCOMPONENTE(eph_i &ti){
-    for(int i=0; i<ti.size(); i++){
-        seleccionarMinimo(ti,i); }
+eph_h ordenarPorCOMPONENTE(eph_i &ti)
+{
+    for(int i=0; i<ti.size(); i++)
+        seleccionarMinimo(ti,i);
     return ti;
-    }
-
-
-
+}
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 7
+
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
-bool cumpleCondicion(vector<pair<int, dato>>  busqueda, individuo i)
+bool cumpleCondicion(vector<pair<int, dato>>  &busqueda, individuo i)
 {
     bool ans = true;
     for(pair<int, dato> condicion : busqueda)
@@ -320,27 +347,27 @@ bool quedanIndividuos(eph_i &ti, dato codigo)
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 10
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 11
-int distanciaEuclidiana (pair <int , int > centro , int latitud, int longitud){
+int distanciaEuclidiana (pair <int , int > centro , int latitud, int longitud)
+{
     int result = sqrt(pow(centro.first - latitud,2) + pow(centro.second - longitud,2));
     return result;
 }
 
-bool hogarEnAnillo(int distDesde, int distHasta, pair <int, int> centro, hogar h){
+bool hogarEnAnillo(int distDesde, int distHasta, pair <int, int> centro, hogar h)
+{
     bool result = false;
     int x = distanciaEuclidiana(centro, h[HOGLATITUD], h[HOGLONGITUD]);
-    if (distDesde < x && x <= distHasta){
+    if (distDesde < x && x <= distHasta)
         result = true;
-    }
     return result;
 }
 
-int cantHogaresEnAnillo(int distDesde, int distHasta, pair <int, int> centro, eph_h th){
+int cantHogaresEnAnillo(int distDesde, int distHasta, pair <int, int> centro, eph_h &th)
+{
     int contador = 0;
-    for (int i = 0; i < th.size() ; ++i) {
-        if(hogarEnAnillo(distDesde,distHasta,centro,th[i])){
+    for (hogar &hog : th)
+        if(hogarEnAnillo(distDesde, distHasta, centro, hog))
             contador ++;
-        }
-    }
     return contador;
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 11

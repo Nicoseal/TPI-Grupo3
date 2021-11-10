@@ -4,8 +4,8 @@
 
 using namespace std;
 
-// Implementacion Problema 1
-// TODO FALTA CREAR LOS TESTS
+/// Implementacion Problema 1
+/// TODO FALTA CREAR LOS TESTS
 bool esEncuestaValida ( eph_h th, eph_i ti )
 {
     if(!algunaEncuestaVacia(ti, th) &&
@@ -24,8 +24,8 @@ bool esEncuestaValida ( eph_h th, eph_i ti )
         return false;
 }
 
-// Implementacion Problema 2
-// TODO FALTA CREAR LOS TESTS
+/// Implementacion Problema 2
+/// TODO FALTA CREAR LOS TESTS
 vector<int> histHabitacional(eph_h th, eph_i ti, int region)
 {
     vector<int> resultado;
@@ -37,8 +37,8 @@ vector<int> histHabitacional(eph_h th, eph_i ti, int region)
     return resultado;
 }
 
-// Implementacion Problema 3
-// TODO FALTA CREAR LOS TESTS
+/// Implementacion Problema 3
+/// TODO FALTA CREAR LOS TESTS
 vector<pair<int, float>> laCasaEstaQuedandoChica(eph_h th, eph_i ti)
 {
     vector<int> regiones = {1, 40, 41, 42, 43, 44};
@@ -54,18 +54,15 @@ vector<pair<int, float>> laCasaEstaQuedandoChica(eph_h th, eph_i ti)
     return ans;
 }
 
-// Implementacion Problema 4
-// TODO FALTA HACER EJERCICO
-// TODO FALTA CREAR LOS TESTS
+/// Implementacion Problema 4
+/// TODO FALTA CREAR LOS TESTS
 bool creceElTeleworkingEnCiudadesGrandes(eph_h t1h, eph_i t1i, eph_h t2h, eph_i t2i)
 {
-	bool resp = false;
-	//
-    return  resp;
+    return proporcionTeleworking(t2h, t2i) > proporcionTeleworking(t1h, t1i);
 }
 
-// Implementacion Problema 5
-// TODO FALTA CREAR LOS TESTS
+/// Implementacion Problema 5
+/// TODO FALTA CREAR LOS TESTS
 int costoSubsidioMejora(eph_h th, eph_i ti, int monto)
 {
     int resp = 0;
@@ -76,8 +73,8 @@ int costoSubsidioMejora(eph_h th, eph_i ti, int monto)
     return resp;
 }
 
-// Implementacion Problema 6
-// TODO FALTA CREAR LOS TESTS
+/// Implementacion Problema 6
+/// TODO FALTA CREAR LOS TESTS
 join_hi generarJoin( eph_h th, eph_i ti ){
     join_hi ans = {};
     for(int i=0;i<ti.size();i++)
@@ -87,24 +84,18 @@ join_hi generarJoin( eph_h th, eph_i ti ){
     return ans;
 }
 
-// Implementacion Problema 7
-// TODO FALTA HACER EJERCICO
-// TODO FALTA CREAR LOS TESTS
+/// Implementacion Problema 7
+/// TODO FALTA CREAR LOS TESTS
 void ordenarRegionYCODUSU (eph_h & th, eph_i & ti)
 {
-	//
-
     ordenarPorRegionYCodosu(th);
     ti = ordenarPorIndividuosPorHOGCODOSU(th,ti);
     ordenarPorCOMPONENTE(ti);
-
-
-
 }
 
-// Implementacion Problema 8
-// TODO FALTA HACER EJERCICO
-// TODO FALTA CREAR LOS TESTS
+/// Implementacion Problema 8
+/// TODO FALTA HACER EJERCICO
+/// TODO FALTA CREAR LOS TESTS
 vector < hogar > muestraHomogenea( eph_h & th, eph_i & ti )
 {
     hogar h = {};
@@ -113,8 +104,8 @@ vector < hogar > muestraHomogenea( eph_h & th, eph_i & ti )
     return  resp;
 }
 
-// Implementacion Problema 9
-// TODO FALTA CREAR LOS TESTS
+/// Implementacion Problema 9
+/// TODO FALTA CREAR LOS TESTS
 void corregirRegion(eph_h &th, eph_i &ti)
 {
     for (hogar &hog : th)
@@ -122,21 +113,19 @@ void corregirRegion(eph_h &th, eph_i &ti)
             hog[REGION] = 43;
 }
 
-// Implementacion Problema 11
-// TODO FALTA CREAR LOS TESTS
+/// Implementacion Problema 11
+/// TODO FALTA CREAR LOS TESTS
 vector<int> histogramaDeAnillosConcentricos(eph_h th, eph_i ti, pair<int, int> centro, vector<int> distancias)
 {
     vector<int> resp = {};
     resp.push_back(cantHogaresEnAnillo(0,distancias[0],centro,th));
     for (int i = 1; i < distancias.size() ; ++i)
-    {
         resp.push_back(cantHogaresEnAnillo(distancias[i-1],distancias[i],centro,th));
-    }
     return resp;
 }
 
-// Implementacion Problema 10
-// TODO FALTA CREAR LOS TESTS
+/// Implementacion Problema 10
+/// TODO FALTA CREAR LOS TESTS
 pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>>&  busqueda)
 {
     eph_h rth = {};
