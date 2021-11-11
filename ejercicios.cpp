@@ -87,7 +87,6 @@ void ordenarRegionYCODUSU (eph_h & th, eph_i & ti)
 }
 
 /// Implementacion Problema 8
-/// TODO FALTA CREAR LOS TESTS
 vector <hogar> muestraHomogenea(eph_h &th, eph_i &ti)
 {
     vector<pair<int, int>> ordenador;
