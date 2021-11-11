@@ -275,10 +275,7 @@ int cantidadDeHabitantesEnCasa(dato hogcod, eph_i &ti)
 
 bool necesitaSubsidioMejora (int genteViviendo, hogar &hog)
 {
-    if ((hog[IV2]) < (genteViviendo - 2))
-        return true;
-    else
-        return false;
+    return (hog[IV2]) < (genteViviendo - 2);
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 5
 
