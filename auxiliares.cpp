@@ -325,6 +325,68 @@ eph_h ordenarPorCOMPONENTE(eph_i &ti)
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 7
 
+/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 8
+void ordenar(eph_h &th, vector<pair<int, int>> &ordenador)
+{
+    for (int i=0; i<ordenador.size();i++)
+        for(int j=i; j<ordenador.size(); j++)
+            if(ordenador[i].second > ordenador[j].second)
+            {
+                swap(ordenador[i], ordenador[j]);
+                swap(th[i], th[j]);
+            }
+}
+
+int ingresos(hogar &h, eph_i &ti)
+{
+    int total = 0;
+    for(individuo &ind : ti)
+        if (ind[INDCODUSU] == h[HOGCODUSU] && ind[p47T] > 0)
+            total += ind[p47T];
+    return total;
+}
+
+vector<int> solucionHomogenea(vector<pair<int, int>> &ordenador, int indice=0, int diferencia=0)
+{
+    vector<int> vect = {};
+    vector<int> ans = {};
+    for(int i=indice;i<ordenador.size()-1;i++)
+    {
+        for(int j=i+1;j<ordenador.size();j++)
+        {
+            int dif = ordenador[j].second - ordenador[i].second;
+            if(dif > diferencia && diferencia != 0) return {ordenador[i].first};
+            if(dif==0) continue;
+            if(dif == diferencia || diferencia == 0)
+            {
+                vect.push_back(ordenador[i].first);
+                vector<int> rta = solucionHomogenea(ordenador, j, dif);
+                vect.insert(vect.begin(), rta.begin(), rta.end());
+                if(vect.size()>=2 && diferencia != 0)
+                    return vect;
+            }
+            if(vect.size() < 3 && diferencia == 0)
+                vect.clear();
+            if(vect.size() > ans.size())
+                ans = vect;
+            vect.clear();
+        }
+        if(diferencia != 0) return {ordenador[i].first};
+    }
+    return ans;
+}
+
+vector <hogar> respuestaHomogenea(eph_h &th, vector<int> &solucion)
+{
+    eph_h ans = {};
+    for(dato codigo : solucion)
+        for(hogar hog : th)
+            if(codigo == hog[HOGCODUSU])
+                ans.push_back(hog);
+    return ans;
+}
+/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 8
+
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
 bool cumpleCondicion(vector<pair<int, dato>>  &busqueda, individuo i)
 {
