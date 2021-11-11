@@ -55,6 +55,13 @@ eph_h ordenarPorRegionYCodosu(eph_h &th);
 eph_i ordenarPorIndividuosPorHOGCODOSU(eph_h th, eph_i ti);
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 7
 
+/////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 8
+void ordenar(eph_h &th, vector<pair<int, int>> &ordenador);
+int ingresos(hogar &h, eph_i &ti);
+vector<int> solucionHomogenea(vector<pair<int, int>> &ordenador, int indice, int diferencia);
+vector <hogar> respuestaHomogenea(eph_h &th, vector<int> &solucion);
+/////////////////////////////////////////////////////////// FIN AUXILIARES EJ 8
+
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
 bool cumpleCondicion(vector<pair<int, dato>>  &busqueda, individuo i);
 bool quedanIndividuos(eph_i &ti, dato codigo);

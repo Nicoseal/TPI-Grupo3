@@ -87,22 +87,21 @@ void ordenarRegionYCODUSU (eph_h & th, eph_i & ti)
 }
 
 /// Implementacion Problema 8
-/// TODO FALTA HACER EJERCICO
-/// TODO FALTA CREAR LOS TESTS
-vector < hogar > muestraHomogenea( eph_h & th, eph_i & ti )
+vector <hogar> muestraHomogenea(eph_h &th, eph_i &ti)
 {
-    hogar h = {};
-    vector < hogar > resp = {h};
-    //
-    return  resp;
+    vector<pair<int, int>> ordenador;
+    for(hogar &hog : th)
+        ordenador.emplace_back(hog[HOGCODUSU], ingresos(hog, ti));
+    ordenar(th, ordenador);
+    vector<int> sol = solucionHomogenea(ordenador, 0, 0);
+    return respuestaHomogenea(th, sol);
 }
 
 /// Implementacion Problema 9
 void corregirRegion(eph_h &th, eph_i &ti)
 {
     for (hogar &hog : th)
-        if (hog[REGION] == 1)
-            hog[REGION] = 43;
+        if (hog[REGION] == 1) hog[REGION] = 43;
 }
 
 /// Implementacion Problema 10
