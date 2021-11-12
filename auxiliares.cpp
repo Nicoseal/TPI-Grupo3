@@ -26,7 +26,7 @@ bool columnasCorrectas(eph_i &ti, eph_h &th)
 
 bool algunaEncuestaVacia (const eph_i &ti, const eph_h &th)
 {
-    return (ti.empty()  || th.empty());
+    return (ti.empty() || th.empty());
 }
 
 bool tieneHogar(individuo i, eph_h &th)
