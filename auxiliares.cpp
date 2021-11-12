@@ -4,6 +4,12 @@
 #include "ejercicios.h"
 #include <math.h>
 
+/// Integrantes del grupo 3:
+/// Agustin Canteros
+/// Juan Carlos Aguirre
+/// Mirko Cuchan
+/// Nicolas Ventieri
+
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 1
 bool esMatriz(vector<vector<int>> &th)
 {

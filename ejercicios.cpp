@@ -4,6 +4,12 @@
 
 using namespace std;
 
+/// Integrantes del grupo 3:
+/// Agustin Canteros
+/// Juan Carlos Aguirre
+/// Mirko Cuchan
+/// Nicolas Ventieri
+
 /// Implementacion Problema 1
 bool esEncuestaValida ( eph_h th, eph_i ti )
 {
