@@ -346,7 +346,21 @@ int ingresos(hogar &h, eph_i &ti)
     return total;
 }
 
-vector<int> solucionHomogenea(vector<pair<int, int>> &ordenador, int indice=0, int diferencia=0)
+int busqBinaria(vector<pair<int, int>> &vect, int l, int r, int buscar, int restador)
+{
+    if (r >= l) {
+        int mid = l + (r - l) / 2;
+        int dif = vect[mid].second - restador;
+        if (dif == buscar)
+            return mid;
+        if (dif > buscar)
+            return busqBinaria(vect, l, mid - 1, buscar, restador);
+        return busqBinaria(vect, mid + 1, r, buscar, restador);
+    }
+    return -1;
+}
+
+vector<int> solucionHomogenea(vector<pair<int, int>> &ordenador, int indice, int diferencia)
 {
     vector<int> vect = {};
     vector<int> ans = {};
@@ -354,22 +368,33 @@ vector<int> solucionHomogenea(vector<pair<int, int>> &ordenador, int indice=0, i
     {
         for(int j=i+1;j<ordenador.size();j++)
         {
-            int dif = ordenador[j].second - ordenador[i].second;
-            if(dif > diferencia && diferencia != 0) return {ordenador[i].first};
-            if(dif==0) continue;
-            if(dif == diferencia || diferencia == 0)
+            if(diferencia == 0)
             {
+                int dif = ordenador[j].second - ordenador[i].second;
+
+                if(dif==0) continue;
                 vect.push_back(ordenador[i].first);
                 vector<int> rta = solucionHomogenea(ordenador, j, dif);
                 vect.insert(vect.begin(), rta.begin(), rta.end());
-                if(vect.size()>=2 && diferencia != 0)
-                    return vect;
+                if(vect.size() < 3 || vect.size() <= ans.size())
+                    vect.clear();
+                else
+                {
+                    ans = vect;
+                    vect.clear();
+                }
             }
-            if(vect.size() < 3 && diferencia == 0)
-                vect.clear();
-            if(vect.size() > ans.size())
-                ans = vect;
-            vect.clear();
+            else
+            {
+                int bb = busqBinaria(ordenador, i+1, ordenador.size()-1, diferencia, ordenador[i].second);
+                if(bb != -1)
+                {
+                    vect.push_back(ordenador[i].first);
+                    vector<int> rta = solucionHomogenea(ordenador, bb, diferencia);
+                    vect.insert(vect.begin(), rta.begin(), rta.end());
+                    if(vect.size()>=2) return vect;
+                }
+            }
         }
         if(diferencia != 0) return {ordenador[i].first};
     }
