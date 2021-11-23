@@ -112,7 +112,7 @@ bool atribsCatsOkDeTi(eph_i ti)
            (ti[i][COMPONENTE] > 0) &&
            (ti[i][INDTRIMESTRE] > 0 && ti[i][INDTRIMESTRE] < 4) &&
            (ti[i][CH4] == 1 || ti[i][CH4] == 2) &&
-           (ti[i][CH6] > 0) &&
+           (ti[i][CH6] >= 0) &&
            (ti[i][NIVEL_ED] == 0 || ti[i][NIVEL_ED] == 1) &&
            (ti[i][ESTADO] == 0 || ti[i][ESTADO] == 1 || ti[i][ESTADO] == -1) &&
            (ti[i][CAT_OCUP] >= 0 && ti[i][CAT_OCUP] <= 4) &&
