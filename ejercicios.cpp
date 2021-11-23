@@ -46,13 +46,13 @@ vector<pair<int, float>> laCasaEstaQuedandoChica(eph_h th, eph_i ti)
 {
     vector<int> regiones = {1, 40, 41, 42, 43, 44};
     vector<pair<int,float>> ans = {};
-    for(int region : regiones)
+    for(int i=0;i<regiones.size();i++)
     {
-        float hogares_validos = cantHogaresValidos(th, region);
+        float hogares_validos = cantHogaresValidos(th, regiones[i]);
         if(hogares_validos > 0)
-            ans.emplace_back(region, cantHogaresValidosConHC(th, ti, region) / hogares_validos);
+            ans.emplace_back(regiones[i], cantHogaresValidosConHC(th, ti, regiones[i]) / hogares_validos);
         else
-            ans.emplace_back(region, 0);
+            ans.emplace_back(regiones[i], 0);
     }
     return ans;
 }
@@ -67,9 +67,9 @@ bool creceElTeleworkingEnCiudadesGrandes(eph_h t1h, eph_i t1i, eph_h t2h, eph_i 
 int costoSubsidioMejora(eph_h th, eph_i ti, int monto)
 {
     int resp = 0;
-    for(hogar hog : th)
-        if(hog[II7] == 1)
-            if (necesitaSubsidioMejora(cantidadDeHabitantesEnCasa(hog[HOGCODUSU], ti), (hog)))
+    for(int i=0;i<th.size();i++)
+        if(th[i][II7] == 1)
+            if (necesitaSubsidioMejora(cantidadDeHabitantesEnCasa(th[i][HOGCODUSU], ti), (th[i])))
                 resp += monto;
     return resp;
 }
@@ -96,8 +96,8 @@ void ordenarRegionYCODUSU (eph_h & th, eph_i & ti)
 vector <hogar> muestraHomogenea(eph_h &th, eph_i &ti)
 {
     vector<pair<int, int>> ordenador;
-    for(hogar &hog : th)
-        ordenador.emplace_back(hog[HOGCODUSU], ingresos(hog, ti));
+    for(int i = 0; i < th.size(); i++)
+        ordenador.emplace_back(th[i][HOGCODUSU], ingresos(th[i], ti));
     ordenar(th, ordenador);
     vector<int> sol = solucionHomogenea(ordenador, 0, 0);
     return respuestaHomogenea(th, sol);
@@ -106,8 +106,8 @@ vector <hogar> muestraHomogenea(eph_h &th, eph_i &ti)
 /// Implementacion Problema 9
 void corregirRegion(eph_h &th, eph_i &ti)
 {
-    for (hogar &hog : th)
-        if (hog[REGION] == 1) hog[REGION] = 43;
+    for(int i=0;i<th.size();i++)
+        if (th[i][REGION] == 1) th[i][REGION] = 43;
 }
 
 /// Implementacion Problema 10
@@ -122,9 +122,9 @@ pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>
             ti.erase(ti.begin() + i);
             i--;
         }
-    for(individuo ind : rti)
+    for(int i=0;i<rti.size();i++)
         for(int x=0;x<th.size();x++)
-            if(th[x][HOGCODUSU] == ind[INDCODUSU])
+            if(th[x][HOGCODUSU] == rti[i][INDCODUSU])
             {
                 if(!quedanIndividuos(ti, th[x][HOGCODUSU]))
                 {
