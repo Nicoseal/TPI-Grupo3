@@ -24,8 +24,8 @@ bool columnasCorrectas(eph_i &ti, eph_h &th)
     for(int i=0;i<th.size();i++)
         if(th[i].size() != FILAS_HOGAR)
             return false;
-    for(int i=0;i<th.size();i++)
-        if(th[i].size() != FILAS_INDIVIDUO)
+    for(int i=0;i<ti.size();i++)
+        if(ti[i].size() != FILAS_INDIVIDUO)
             return false;
     return true;
 }
@@ -308,9 +308,9 @@ eph_i ordenarPorIndividuosPorHOGCODOSU(eph_h th, eph_i ti)
 {
     eph_i res = {};
     for(int i=0;i<th.size();i++)
-        for(int i=0;i<ti.size();i++)
-            if (ti[i][INDCODUSU] == th[i][HOGCODUSU])
-                res.push_back(ti[i]);
+        for(int j=0;j<ti.size();j++)
+            if (ti[j][INDCODUSU] == th[i][HOGCODUSU])
+                res.push_back(ti[j]);
     return res;
 }
 
