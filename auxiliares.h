@@ -22,9 +22,7 @@ bool hayRepetidosI(vector<vector<dato>> &ti);
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 1
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 2
-bool esCasa(hogar h);
-int maximaCantidadDeHabitacionesEnRegion (eph_h th, int region);
-int cantHogaresCasaConNHabitaciones(eph_h th, int region, int habitaciones);
+int maxHabitacionRegion(eph_h &th, int region);
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 2
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 3

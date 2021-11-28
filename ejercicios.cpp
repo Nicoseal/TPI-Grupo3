@@ -11,7 +11,7 @@ using namespace std;
 /// Nicolas Ventieri
 
 /// Implementacion Problema 1
-bool esEncuestaValida ( eph_h th, eph_i ti )
+bool esEncuestaValida (eph_h th, eph_i ti)
 {
     if(!algunaEncuestaVacia(ti, th) &&
     esMatriz(th) && (esMatriz(ti)) &&
@@ -32,13 +32,12 @@ bool esEncuestaValida ( eph_h th, eph_i ti )
 /// Implementacion Problema 2
 vector<int> histHabitacional(eph_h th, eph_i ti, int region)
 {
-    vector<int> resultado;
-    int longitudDeResultado = maximaCantidadDeHabitacionesEnRegion(th, region);
-    for (int i=0; i < longitudDeResultado; ++i)
-    {
-        resultado.push_back(cantHogaresCasaConNHabitaciones(th,region,i+1));
-    }
-    return resultado;
+    int longitud = maxHabitacionRegion(th, region);
+    vector<int> ans(longitud, 0);
+    for(int i=0;i<th.size();i++)
+        if(th[i][REGION] == region && th[i][IV1] == 1)
+            ans[th[i][IV2]-1]++;
+    return ans;
 }
 
 /// Implementacion Problema 3

@@ -163,30 +163,13 @@ bool hayRepetidosI(vector<vector<dato>> &ti)
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 1
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 2
-bool esCasa(hogar h)
-{
-    bool res = false;
-    if(h[IV1] == 1)
-        res = true;
-    return res;
-}
-
-int maximaCantidadDeHabitacionesEnRegion (eph_h th, int region)
+int maxHabitacionRegion(eph_h &th, int region)
 {
     int max = 0;
     for(int i=0;i<th.size();i++)
         if(th[i][REGION] == region && th[i][IV2] > max)
             max = th[i][IV2];
     return max;
-}
-
-int cantHogaresCasaConNHabitaciones(eph_h th, int region, int habitaciones)
-{
-    int contador = 0;
-    for(int i=0;i<th.size();i++)
-        if(esCasa(th[i]) && th[i][IV2] == habitaciones && th[i][REGION] == region)
-            contador ++;
-    return contador;
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 2
 
