@@ -115,6 +115,7 @@ pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>
 {
     eph_h rth = {};
     eph_i rti = {};
+    vector<dato> cods = {};
     for(int i=0;i<ti.size();i++)
         if(cumpleCondicion(busqueda, ti[i]))
         {
@@ -123,8 +124,11 @@ pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>
             i--;
         }
     for(int i=0;i<rti.size();i++)
+        if(!existe(rti[i][INDCODUSU], cods))
+            cods.push_back(rti[i][INDCODUSU]);
+    for(int i=0;i<cods.size();i++)
         for(int x=0;x<th.size();x++)
-            if(th[x][HOGCODUSU] == rti[i][INDCODUSU])
+            if(th[x][HOGCODUSU] == cods[i])
             {
                 if(!quedanIndividuos(ti, th[x][HOGCODUSU]))
                 {

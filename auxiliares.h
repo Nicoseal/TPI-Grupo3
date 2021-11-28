@@ -66,6 +66,7 @@ vector <hogar> respuestaHomogenea(eph_h &th, vector<int> &solucion);
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
 bool cumpleCondicion(vector<pair<int, dato>>  &busqueda, individuo i);
 bool quedanIndividuos(eph_i &ti, dato codigo);
+bool existe(int codigo, vector<dato> &cods);
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 10
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 11

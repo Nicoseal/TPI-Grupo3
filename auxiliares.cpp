@@ -434,6 +434,14 @@ bool quedanIndividuos(eph_i &ti, dato codigo)
             return true;
     return false;
 }
+
+bool existe(int codigo, vector<dato> &cods)
+{
+    for(int j=0;j<cods.size();j++)
+        if(cods[j] == codigo)
+            return true;
+    return false;
+}
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 10
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 11
