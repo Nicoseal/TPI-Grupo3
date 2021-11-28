@@ -94,12 +94,8 @@ void ordenarRegionYCODUSU (eph_h & th, eph_i & ti)
 /// Implementacion Problema 8
 vector <hogar> muestraHomogenea(eph_h &th, eph_i &ti)
 {
-    vector<pair<int, int>> ordenador;
-    for(int i = 0; i < th.size(); i++)
-        ordenador.emplace_back(th[i][HOGCODUSU], ingresos(th[i], ti));
-    ordenar(th, ordenador);
-    vector<int> sol = solucionHomogenea(ordenador, 0, 0);
-    return respuestaHomogenea(th, sol);
+    vector<int> ingresos = ordenar(th, ti);
+    return solucionHomogenea(th, ingresos);
 }
 
 /// Implementacion Problema 9

@@ -315,18 +315,7 @@ eph_h ordenarPorCOMPONENTE(eph_i &ti)
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 7
 
 /////////////////////////////////////////////////////////// INICIO AUXILIARES EJ 8
-void ordenar(eph_h &th, vector<pair<int, int>> &ordenador)
-{
-    for (int i=0; i<ordenador.size();i++)
-        for(int j=i; j<ordenador.size(); j++)
-            if(ordenador[i].second > ordenador[j].second)
-            {
-                swap(ordenador[i], ordenador[j]);
-                swap(th[i], th[j]);
-            }
-}
-
-int ingresos(hogar &h, eph_i &ti)
+int totIngresos(hogar &h, eph_i &ti)
 {
     int total = 0;
     for(int i=0;i<ti.size();i++)
@@ -335,68 +324,52 @@ int ingresos(hogar &h, eph_i &ti)
     return total;
 }
 
-int busqBinaria(vector<pair<int, int>> &vect, int l, int r, int buscar, int restador)
+vector<int> ordenar(eph_h &th, eph_i &ti)
 {
-    if (r >= l) {
-        int mid = l + (r - l) / 2;
-        int dif = vect[mid].second - restador;
-        if (dif == buscar)
-            return mid;
-        if (dif > buscar)
-            return busqBinaria(vect, l, mid - 1, buscar, restador);
-        return busqBinaria(vect, mid + 1, r, buscar, restador);
-    }
-    return -1;
+    vector<int> ingresos(th.size());
+    for(int i=0; i<th.size();i++)
+        ingresos[i] = totIngresos(th[i], ti);
+    for(int i=0; i<ingresos.size();i++)
+        for(int j=i; j<ingresos.size(); j++)
+            if(ingresos[i] > ingresos[j])
+            {
+                swap(th[i], th[j]);
+                swap(ingresos[i], ingresos[j]);
+            }
+    return ingresos;
 }
 
-vector<int> solucionHomogenea(vector<pair<int, int>> &ordenador, int indice, int diferencia)
+eph_h solucionHomogenea(eph_h &th,vector<int> ingresos)
 {
-    vector<int> vect = {};
-    vector<int> ans = {};
-    for(int i=indice;i<ordenador.size()-1;i++)
+    eph_h vect = {};
+    eph_h ans = {};
+    for(int i=0;i<ingresos.size()-2;i++)
     {
-        for(int j=i+1;j<ordenador.size();j++)
+        for(int x=i+1;x<ingresos.size()-1;x++)
         {
-            if(diferencia == 0)
+            int dif_inicial = ingresos[x] - ingresos[i];
+            if(dif_inicial==0) continue;
+            int multiplicador = 2;
+            vect.push_back(th[i]);
+            vect.push_back(th[x]);
+            for(int j=x+1;j<ingresos.size();j++)
             {
-                int dif = ordenador[j].second - ordenador[i].second;
-
-                if(dif==0) continue;
-                vect.push_back(ordenador[i].first);
-                vector<int> rta = solucionHomogenea(ordenador, j, dif);
-                vect.insert(vect.begin(), rta.begin(), rta.end());
-                if(vect.size() < 3 || vect.size() <= ans.size())
-                    vect.clear();
-                else
+                int diferencia = ingresos[j] - ingresos[i];
+                if(diferencia == dif_inicial * multiplicador)
                 {
-                    ans = vect;
-                    vect.clear();
+                    multiplicador++;
+                    vect.push_back(th[j]);
                 }
             }
+            if(vect.size() < 3 || vect.size() <= ans.size())
+                vect.clear();
             else
             {
-                int bb = busqBinaria(ordenador, i+1, ordenador.size()-1, diferencia, ordenador[i].second);
-                if(bb != -1)
-                {
-                    vect.push_back(ordenador[i].first);
-                    vector<int> rta = solucionHomogenea(ordenador, bb, diferencia);
-                    vect.insert(vect.begin(), rta.begin(), rta.end());
-                    if(vect.size()>=2) return vect;
-                }
+                ans = vect;
+                vect.clear();
             }
         }
-        if(diferencia != 0) return {ordenador[i].first};
     }
-    return ans;
-}
-
-vector <hogar> respuestaHomogenea(eph_h &th, vector<int> &solucion)
-{
-    eph_h ans = {};
-    for(int j=0;j<solucion.size();j++)
-        for(int i=0;i<th.size();i++)
-            if(solucion[j] == th[i][HOGCODUSU])
-                ans.push_back(th[i]);
     return ans;
 }
 /////////////////////////////////////////////////////////// FIN AUXILIARES EJ 8
